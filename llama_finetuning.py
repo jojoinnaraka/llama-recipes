@@ -87,6 +87,8 @@ def main(**kwargs):
     
     # Calculate gradient accumulation steps
     gradient_accumulation_steps = train_config.batch_size_training // train_config.micro_batch_size
+    if gradient_accumulation_steps == 0:
+        gradient_accumulation_steps = 1
      
     # Load the pre-trained model and setup its configuration
     model = LlamaForCausalLM.from_pretrained(
